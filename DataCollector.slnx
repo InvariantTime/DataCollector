@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/Services/" />
+  <Folder Name="/Services/Server/">
+    <Project Path="Services/Server/DataCollector.Server.API/DataCollector.Server.API.csproj" Id="e758aff6-c702-4492-b6d1-d267e6a42083" />
+  </Folder>
+  <Folder Name="/Services/Terminal/">
+    <Project Path="Services/Terminal/DataCollector.Terminal.App/DataCollector.Terminal.App.csproj" Id="3d944b3e-bed2-43ff-9e94-8d6281234135" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Shared/DataCollector.Shared.Domain/DataCollector.Shared.Domain.csproj" Id="bfe875d3-5012-4f84-a2b8-94783246814f" />
+    <Project Path="Shared/DataCollector.Shared.Events/DataCollector.Shared.Events.csproj" Id="1ff97844-72b3-478d-aaf0-52234bffe7b9" />
+    <Project Path="Shared/DataCollector.Shared.Utils/DataCollector.Shared.Utils.csproj" Id="edc58740-66ba-4e2e-b895-99a0a019b944" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="compose.yml" />
+  </Folder>
+</Solution>

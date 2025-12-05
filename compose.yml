@@ -1,0 +1,86 @@
+services:
+
+  collector-server: #server
+    build:
+      context: ./Services/DataCollector.Server.API
+
+    container_name: Server
+
+    ports:
+      - 5000:8080
+    
+    depends_on:
+      rabbitmq-queue:
+        condition: service_healthy
+      database:
+        condition: service_started
+
+    networks:
+      - backend-net
+
+  database: #database
+
+    image: postgres:latest
+    container_name: database
+
+    environment:
+      POSTGRES_USER: /run/secrets/db__user
+      POSTGRES_PASSWORD: /run/secrets/db__password
+      POSTGRES_DB: /run/secrets/db__name
+
+    ports:
+      - 5432:5432
+
+    secrets:
+      - db__name
+      - db__user
+      - db__password
+
+  rabbitmq-queue: #rabbitMQ
+
+    image: rabbitmq:4-management
+    container_name: rabbitmq-queue
+    hostname: /run/secrets/rabbitmq__host
+    ports:
+      - 5672:5672 #AMQP
+      - 15672:15672 #managment
+    
+    environment: 
+      RABBITMQ_DEFAULT_USER: /run/secrets/rabbitmq__user
+      RABBITMQ_DEFAULT_PASS: /run/secrets/rabbitmq__password
+
+    networks:
+      - backend-net
+
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+    secrets:
+      - rabbitmq__user
+      - rabbitmq__password
+      - rabbitmq__host
+
+networks:
+  backend-net:
+    driver: bridge
+
+secrets:
+  #rabbitmq
+  rabbitmq__user:
+    file: ./secrets/rabbitmq__user
+  rabbitmq__password:
+    file: ./secrets/rabbitmq__password
+  rabbitmq__host:
+    file: ./secrets/rabbitmq__host
+  #asp
+
+  #postgres
+  db__name:
+    file: ./secrets/db__name
+  db__user:
+    file: ./secrets/db__user
+  db__password:
+    file: ./secrets/db__password

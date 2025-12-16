@@ -2,17 +2,26 @@
   <Folder Name="/Services/" />
   <Folder Name="/Services/Server/">
     <Project Path="Services/Server/DataCollector.Server.API/DataCollector.Server.API.csproj" Id="e758aff6-c702-4492-b6d1-d267e6a42083" />
+    <Project Path="Services/Server/DataCollector.Server.Domain/DataCollector.Server.Domain.csproj" Id="5c54d05f-3ed3-44a0-80bc-bb1594f7b3cb" />
+    <Project Path="Services/Server/DataCollector.Server.Infrastructure/DataCollector.Server.Infrastructure.csproj" Id="83c0f183-7b87-4897-828c-802c31e917ed" />
+    <Project Path="Services/Server/DataCollector.Server.Persistence/DataCollector.Server.Persistence.csproj" Id="cae0f930-6bf7-4411-bddc-c5b4ec8051cf" />
+    <Project Path="Services/Server/DataCollector.Server.Services/DataCollector.Server.Services.csproj" Id="cdfc0979-dd6a-47a9-996a-cea52e60dcd8" />
   </Folder>
   <Folder Name="/Services/Terminal/">
     <Project Path="Services/Terminal/DataCollector.Terminal.App/DataCollector.Terminal.App.csproj" Id="3d944b3e-bed2-43ff-9e94-8d6281234135" />
   </Folder>
   <Folder Name="/Shared/">
-    <Project Path="Shared/DataCollector.Shared.Domain/DataCollector.Shared.Domain.csproj" Id="bfe875d3-5012-4f84-a2b8-94783246814f" />
-    <Project Path="Shared/DataCollector.Shared.Events/DataCollector.Shared.Events.csproj" Id="1ff97844-72b3-478d-aaf0-52234bffe7b9" />
-    <Project Path="Shared/DataCollector.Shared.Utils/DataCollector.Shared.Utils.csproj" Id="edc58740-66ba-4e2e-b895-99a0a019b944" />
+    <Project Path="Shared/DataCollector.Domain/DataCollector.Domain.csproj" Id="fae214ae-6936-4332-961a-abc7e3a80dfe" />
+    <Project Path="Shared/DataCollector.Messaging.AMQP/DataCollector.Messaging.AMQP.csproj" Id="6d88bc31-f588-4549-88a4-06df08239afa" />
+    <Project Path="Shared/DataCollector.Messaging.Core/DataCollector.Messaging.Core.csproj" Id="3bdd01ae-5253-4b77-83d8-2376cfb600be" />
+    <Project Path="Shared/DataCollector.Messaging.MQTT/DataCollector.Messaging.MQTT.csproj" Id="b533f66c-f9c4-44fa-a2dd-fe6dac57a6aa" />
+    <Project Path="Shared/DataCollector.Shared/DataCollector.Shared.csproj" Id="915085e0-b72b-464b-a131-fcfa08f11cab" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="compose.yml" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/DataCollector.Tests/DataCollector.Tests.csproj" Id="02f33ced-04ca-45e6-8130-22a5348b1e48" />
   </Folder>
 </Solution>

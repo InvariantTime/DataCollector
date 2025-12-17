@@ -1,7 +1,7 @@
 ﻿using DataCollector.Server.Domain;
 using DataCollector.Shared;
 
-namespace DataCollector.Server.Services;
+namespace DataCollector.Server.Services.Interfaces;
 
 public interface IUserService
 {

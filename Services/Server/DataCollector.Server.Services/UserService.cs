@@ -2,6 +2,7 @@
 using DataCollector.Server.Persistence.DTOs;
 using DataCollector.Server.Persistence.Repositories;
 using DataCollector.Server.Services.Hashing;
+using DataCollector.Server.Services.Interfaces;
 using DataCollector.Shared;
 
 namespace DataCollector.Server.Services;

@@ -1,5 +1,4 @@
 ﻿using DataCollector.Server.Domain;
-using DataCollector.Server.Persistence.DTOs;
 using DataCollector.Server.Persistence.Repositories;
 using DataCollector.Server.Services.Hashing;
 using DataCollector.Server.Services.Interfaces;
@@ -23,17 +22,18 @@ public class UserService : IUserService
         return _users.GetUserAsync(id);
     }
 
-    public async Task<Result<User>> RegisterUserAsync(string name, string password)
+    public Task<Result<User>> RegisterUserAsync(string name, string password)
     {
         var passwordHash = _hasher.Hash(password);
 
-        var result = await _users.AddUserAsync(new CreateUserDTO
+        var user = new User
         {
             Name = name,
-            PasswordHash = passwordHash
-        });
+            PasswordHash = passwordHash,
+            Role = UserRoles.Scanner
+        };
 
-        return result;
+        return _users.AddUserAsync(user);
     }
 
     public async Task<Result> TryLogIn(string name, string password)

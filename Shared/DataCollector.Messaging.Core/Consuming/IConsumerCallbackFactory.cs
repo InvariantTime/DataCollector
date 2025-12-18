@@ -2,5 +2,5 @@
 
 public interface IConsumerCallbackFactory
 {
-    Action<MessageCallbackData> CreateCallback(object consumer);
+    Func<MessageCallbackData, Task> CreateCallback(object consumer);
 }

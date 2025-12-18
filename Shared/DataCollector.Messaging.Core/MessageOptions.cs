@@ -5,9 +5,9 @@ public class MessageOptions
 {
     public Type MessageType { get; }
 
-    public MessageEndpoint Endpoint { get; }
+    public Uri Endpoint { get; }
 
-    public MessageOptions(Type type, MessageEndpoint endpoint)
+    public MessageOptions(Type type, Uri endpoint)
     {
         MessageType = type;
         Endpoint = endpoint;
@@ -17,7 +17,8 @@ public class MessageOptions
     public static MessageOptions CreateDefault(Type messageType)//TODO: different implementations
     {
         var fullName = messageType.FullName ?? string.Empty;
+        string uriString = $"queue://{fullName.Replace('.', '/')}";
 
-        return new MessageOptions(messageType, new MessageEndpoint(fullName, MessageEndpointTypes.Queue));
+        return new MessageOptions(messageType, new Uri(uriString));
     }
 }

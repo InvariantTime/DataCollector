@@ -6,5 +6,5 @@ public interface IBrokerConnection
 
     Task<bool> ReconnectAsync();
 
-    Task<IModel> CreateModelAsync();
+    Task<IBrokerModel> CreateModelAsync();
 }

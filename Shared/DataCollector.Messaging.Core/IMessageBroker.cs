@@ -1,0 +1,10 @@
+﻿using DataCollector.Messaging.Core.Consuming;
+
+namespace DataCollector.Messaging.Core;
+
+public interface IMessageBroker
+{
+    Task PublishAsync<T>(T message) where T : class;
+
+    Task<IDisposable> SubscribeAsync<T>(IMessageConsumer<T> consumer) where T : class;
+}

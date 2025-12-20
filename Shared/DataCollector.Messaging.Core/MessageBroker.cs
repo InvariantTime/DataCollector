@@ -36,17 +36,32 @@ public class MessageBroker : IMessageBroker
 
     public async Task<IDisposable> SubscribeAsync<T>(IMessageConsumer<T> consumer) where T : class
     {
+        var callback = _factory.CreateCallback(consumer);
+        return await InternalSubscribeAsync(typeof(T), consumer, callback);
+    }
+
+    public async Task<IDisposable> SubscribeAsync(IMessageConsumer consumer)
+    {
+        var callback = _factory.CreateCallback(consumer);
+        return await InternalSubscribeAsync(consumer.MessageType, consumer, callback);
+    }
+
+    private async Task<IDisposable> InternalSubscribeAsync(Type messageType, object consumer, ConsumerCallback callback)
+    {
         await ReconnectIfNeed();// TODO: Reconnect policy
 
         var model = await _connection.CreateModelAsync();
+        var options = _options.GetOrAdd(messageType, MessageOptions.CreateDefault);
 
-        var options = _options.GetOrAdd(typeof(T), MessageOptions.CreateDefault);
-        var callback = _factory.CreateCallback(consumer);
+        Func<MessageCallbackData, Task> nativeCallback = (data) =>
+        {
+            return callback.Invoke(data, this);
+        };
 
-        await model.SubscribeMessageAsync(callback, options.Endpoint);
+        await model.SubscribeMessageAsync(nativeCallback, options.Endpoint);
 
-        var holder = new ConsumerHolder(model, consumer, typeof(T), options.Endpoint, _holders);
-        _holders.TryAdd(typeof(T), holder);
+        var holder = new ConsumerHolder(model, consumer, messageType, options.Endpoint, _holders);
+        _holders.TryAdd(messageType, holder);
 
         return holder;
     }

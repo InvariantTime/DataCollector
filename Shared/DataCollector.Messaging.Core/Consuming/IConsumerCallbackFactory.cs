@@ -1,6 +1,10 @@
 ﻿namespace DataCollector.Messaging.Core.Consuming;
 
+public delegate Task ConsumerCallback(MessageCallbackData data, IMessageBroker broker);
+
 public interface IConsumerCallbackFactory
 {
-    Func<MessageCallbackData, Task> CreateCallback(object consumer);
+    ConsumerCallback CreateCallback(IMessageConsumer consumer);
+
+    ConsumerCallback CreateCallback<T>(IMessageConsumer<T> consumer) where T : class;
 }

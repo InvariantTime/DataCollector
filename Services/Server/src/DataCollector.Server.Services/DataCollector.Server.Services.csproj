@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataCollector.Server.Domain\DataCollector.Server.Domain.csproj" />
+    <ProjectReference Include="..\DataCollector.Server.Persistence\DataCollector.Server.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Shared\DataCollector.Domain\DataCollector.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\DataCollector.Messaging.Core\DataCollector.Messaging.Core.csproj" />
     <ProjectReference Include="..\..\..\..\Shared\DataCollector.Shared\DataCollector.Shared.csproj" />
     <ProjectReference Include="..\DataCollector.Server.Domain\DataCollector.Server.Domain.csproj" />
     <ProjectReference Include="..\DataCollector.Server.Services\DataCollector.Server.Services.csproj" />

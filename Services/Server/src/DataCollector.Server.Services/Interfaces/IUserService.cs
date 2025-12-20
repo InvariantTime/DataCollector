@@ -7,7 +7,7 @@ public interface IUserService
 {
     Task<Result<User>> RegisterUserAsync(string name, string password);
 
-    Task<Result> TryLogIn(string name, string password);
+    Task<Result<User>> TryLogInAsync(string name, string password);
 
     Task<Result<User>> GetUserById(Guid id);
 }

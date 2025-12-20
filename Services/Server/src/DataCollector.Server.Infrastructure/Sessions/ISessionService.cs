@@ -7,7 +7,7 @@ public interface ISessionService
 {
     IReadOnlyCollection<UserSession> Sessions { get; }
 
-    Task<Result> ConnectSessionAsync(User user);
+    Task<Result<Guid>> ConnectSessionAsync(User user);
 
     Task<Result> DisconnectSessionAsync(Guid sessionId);
 

@@ -36,20 +36,20 @@ public class UserService : IUserService
         return _users.AddUserAsync(user);
     }
 
-    public async Task<Result> TryLogIn(string name, string password)
+    public async Task<Result<User>> TryLogInAsync(string name, string password)
     {
         var user = await _users.GetUserByNameAsync(name);
 
         if (user.IsSuccess == false)
-            return Result.Failed("Invalid name or login");
+            return Result.Failed<User>("Invalid name or login");
 
         var hash = user.Value!.PasswordHash;
 
         var result = _hasher.Verify(hash, password);
 
         if (result == false)
-            return Result.Failed("Invalid name or login");
+            return Result.Failed<User>("Invalid name or login");
 
-        return Result.Success();
+        return Result.Success(user.Value);
     }
 }

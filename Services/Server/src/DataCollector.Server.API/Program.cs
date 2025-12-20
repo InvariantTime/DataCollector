@@ -1,13 +1,12 @@
 using DataCollector.Messaging.AMQP;
 using DataCollector.Messaging.Core.Consuming;
 using DataCollector.Messaging.DI;
+using DataCollector.Server.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMessageBroker((builder) =>
 {
-    builder.AddConsumer<TestConsumer>()
-        .SetEndpoint("queue://test-consumer");
 
     builder.UseRabbitMq((options) =>
     {
@@ -19,16 +18,8 @@ builder.Services.AddMessageBroker((builder) =>
     });
 });
 
+builder.Services.AddHostedService<BrokerStartupService>();
+
 var app = builder.Build();
 
 app.Run();
-
-class TestConsumer : IMessageConsumer<MyMessage>
-{
-    public Task ConsumeAsync(ConsumeContext<MyMessage> context)
-    {
-        return Console.Out.WriteLineAsync($"{context.Message.Value} from {context.Route}");
-    }
-}
-
-record MyMessage(string Value);

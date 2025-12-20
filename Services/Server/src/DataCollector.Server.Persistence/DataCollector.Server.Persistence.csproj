@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Shared\DataCollector.Domain\DataCollector.Domain.csproj" />
     <ProjectReference Include="..\..\..\..\Shared\DataCollector.Shared\DataCollector.Shared.csproj" />
     <ProjectReference Include="..\DataCollector.Server.Domain\DataCollector.Server.Domain.csproj" />
   </ItemGroup>

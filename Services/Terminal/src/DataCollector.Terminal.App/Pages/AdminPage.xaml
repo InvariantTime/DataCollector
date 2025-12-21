@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataCollector.Terminal.App.Pages.AdminPage"
+             Title="AdminPage"
+             >
+
+    <Grid BackgroundColor="#282828">
+
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button Text="Apply" BackgroundColor="{StaticResource Key=backColor}" TextColor="{StaticResource Key=textColor}" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="OnAdminAction" Grid.Row="0" Grid.Column="0" />
+
+
+
+
+
+
+        <Label Text="Список пользователей" TextColor="White"  HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+
+        <CollectionView ItemsSource="{Binding Users}"  HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" >
+
+            <CollectionView.ItemTemplate >
+                <DataTemplate>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+
+                        <CheckBox  HorizontalOptions="Center"/>
+                        <Label Text="{Binding Name}"  TextColor="{StaticResource Key=textColor}" Margin="15"  HorizontalOptions="Center"/>
+                        <Label Text="{Binding Age}"  TextColor="{StaticResource Key=textColor}" Margin="15"  HorizontalOptions="Center"/>
+                        <Label Text="{Binding Role}"  TextColor="{StaticResource Key=textColor}" Margin="15"  HorizontalOptions="Center"/>
+
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+    </Grid>
+
+</ContentPage> 

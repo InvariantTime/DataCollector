@@ -4,11 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:DataCollector.Terminal.App"
+    xmlns:pages="clr-namespace:DataCollector.Terminal.App.Pages"
     Title="DataCollector.Terminal.App">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate pages:Registration}"
         Route="MainPage" />
 
 </Shell>

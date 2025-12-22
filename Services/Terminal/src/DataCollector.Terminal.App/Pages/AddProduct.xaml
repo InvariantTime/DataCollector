@@ -4,28 +4,28 @@
              xmlns:zxing ="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="DataCollector.Terminal.App.Pages.AddProduct"
              Title="AddProduct">
-    <Grid BackgroundColor="#282828">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <zxing:CameraBarcodeReaderView Grid.Row="0" Grid.Column="1" 
         x:Name="barcodeReader"
-        WidthRequest="150"  HeightRequest="200"  />
+        WidthRequest="150"  HeightRequest="200"/>
 
         <VerticalStackLayout Grid.Row="1" Grid.Column="0">
 
-            <Label Text="Data: " TextColor="{StaticResource Key=textColor}" HorizontalOptions="Center" Margin="10"  FontSize="Title"/>
+            <Label Text="Data: " HorizontalOptions="Center" Margin="10"  FontSize="Title"/>
         </VerticalStackLayout>
 
-        <Button Text="Add" BackgroundColor="{StaticResource Key=backColor}" TextColor="{StaticResource Key=textColor}" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="OnAddClicked" Grid.Row="2" Grid.Column="1" />
+        <Button Text="Add" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="OnAddClicked" Grid.Row="2" Grid.Column="1" />
 
     </Grid>
 </ContentPage> 

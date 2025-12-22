@@ -4,27 +4,25 @@
              x:Class="DataCollector.Terminal.App.Pages.Registration"
              Title="Registration">
 
+    <StackLayout VerticalOptions="Center">
+        <Label Text="Login" HorizontalOptions="Center" FontSize="Large" Margin="25"/>
+
+        <VerticalStackLayout HorizontalOptions="Center">
+            
+            <Label Text="Email" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Entry MaximumWidthRequest="300" Placeholder="Enter email..."
+                   MinimumWidthRequest="300"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
+            
+            <Label Text="Password" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Entry MaximumWidthRequest="300" Placeholder="Enter password..."
+                   MinimumWidthRequest="300" HorizontalOptions="End"/>
+        </VerticalStackLayout>
 
 
-
-
-    <StackLayout BackgroundColor="#282828">
-        <Label Text="Login" HorizontalOptions="Center" TextColor="{StaticResource Key=textColor}" FontSize="Large" Margin="30"/>
-
-        <HorizontalStackLayout HorizontalOptions ="Center" Padding="20" >
-            <Label Text="Email" TextColor="{StaticResource Key=textColor}" Margin="10" HorizontalOptions="Center"  />
-            <Entry MinimumWidthRequest="300" TextColor="{StaticResource Key=textColor}"/>
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="Password" TextColor="{StaticResource Key=textColor}" Margin="10" />
-            <Entry  MinimumWidthRequest="300" TextColor="{StaticResource Key=textColor}"/>
-        </HorizontalStackLayout>
-
-
-        <Button Text="Submit" BackgroundColor="{StaticResource Key=backColor}" TextColor="{StaticResource Key=textColor}" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="OnSubMit" />
-
-
+        <Button Text="Submit" WidthRequest="200" HeightRequest="50" Margin="20 0 0 0" FontSize="Medium" Clicked="OnSubMit" />
 
     </StackLayout>
 </ContentPage>

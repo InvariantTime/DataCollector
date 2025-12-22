@@ -16,7 +16,6 @@ public partial class Scanning : ContentPage
 
     async void AlertButton_Clicked(object sender, EventArgs e)
     {
-        var action = await DisplayActionSheet("Error 404", "Back", null, "Error потому что ты дибил");
 
     }
 

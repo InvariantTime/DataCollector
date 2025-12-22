@@ -86,6 +86,9 @@
 	  <MauiXaml Update="Pages\AdminPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\ConnectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\PickPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -4,11 +4,11 @@
              x:Class="DataCollector.Terminal.App.Pages.PickPage"
              Title="PickPage">
     
-    <VerticalStackLayout BackgroundColor="#282828">
+    <VerticalStackLayout VerticalOptions="Center">
 
-        <Button Text="Scanning" BackgroundColor="{StaticResource Key=backColor}" TextColor="{StaticResource Key=textColor}" WidthRequest="200"  HeightRequest="50"  Margin="20" FontSize="Medium" Clicked="NavigateToScanning"/>
-        <Button Text="Add Product..." BackgroundColor="{StaticResource Key=backColor}" TextColor="{StaticResource Key=textColor}" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="NavigateToAddRpoduct" />
-        <Button Text="Admin Page" BackgroundColor="{StaticResource Key=backColor}" TextColor="{StaticResource Key=textColor}" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="NavigateToAdminPage"/>
+        <Button Text="Scanning" WidthRequest="200"  HeightRequest="50"  Margin="20" FontSize="Medium" Clicked="NavigateToScanning"/>
+        <Button Text="Add Product..." WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="NavigateToAddRpoduct" />
+        <Button Text="Admin Page" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="NavigateToAdminPage"/>
 
     </VerticalStackLayout>
 </ContentPage>

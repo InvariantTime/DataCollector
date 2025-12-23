@@ -1,11 +1,7 @@
 
-
-using CommunityToolkit.Maui.Extensions;
-using CommunityToolkit.Maui.Views;
-
 namespace DataCollector.Terminal.App.Forms;
 
-public partial class AdminActionForm : Popup
+public partial class AdminActionForm : ContentView
 {
     public AdminActionForm()
     {
@@ -14,7 +10,6 @@ public partial class AdminActionForm : Popup
 
     public void OnCloseAsync(object sender, EventArgs e)
     {
-        CloseAsync();
     }
 
     public void OnMessageWorkers(object sender, EventArgs e)

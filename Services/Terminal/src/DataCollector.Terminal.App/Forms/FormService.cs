@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui.Extensions;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
 using System.Collections.Immutable;
 
@@ -6,25 +7,27 @@ namespace DataCollector.Terminal.App.Forms;
 
 public class FormService : IFormService
 {
-    private readonly ImmutableDictionary<Type, Popup> _popups;
+    private readonly IPopupOptions _popupOptions;
+    private readonly ImmutableDictionary<Type, ContentView> _forms;
 
-    public FormService(IEnumerable<Popup> popups)
+    public FormService(IEnumerable<ContentView> forms, IPopupOptions options)
     {
-        _popups = popups.ToImmutableDictionary(x => x.GetType());
+        _forms = forms.ToImmutableDictionary(x => x.GetType());
+        _popupOptions = options;
     }
 
-    public Task ShowFormAsync<T>(CancellationToken cancellation = default) where T : Popup
+    public Task ShowFormAsync<T>(CancellationToken cancellation = default) where T : ContentView
     {
-        if (_popups.TryGetValue(typeof(T), out var form) == false)
+        if (_forms.TryGetValue(typeof(T), out var form) == false)
             throw new InvalidOperationException($"Unable to get form {typeof(T)}");
 
         return OpenPopupAsync(form, cancellation);
     }
 
     public async Task<TResult> ShowFormAsync<TForm, TResult>(CancellationToken cancellation = default)
-        where TForm : Popup, IWithResult<TResult>
+        where TForm : ContentView, IWithResult<TResult>
     {
-        if (_popups.TryGetValue(typeof(TForm), out var res) == false || res is not TForm form)
+        if (_forms.TryGetValue(typeof(TForm), out var res) == false || res is not TForm form)
             throw new InvalidOperationException($"Unable to get form {typeof(TForm)}");
 
         await OpenPopupAsync(form, cancellation);
@@ -33,9 +36,9 @@ public class FormService : IFormService
     }
 
     public async Task ShowFormAsync<TForm, TParameter>(TParameter parameter, CancellationToken cancellation = default)
-        where TForm : Popup, IWithParameter<TParameter>
+        where TForm : ContentView, IWithParameter<TParameter>
     {
-        if (_popups.TryGetValue(typeof(TForm), out var res) == false || res is not TForm form)
+        if (_forms.TryGetValue(typeof(TForm), out var res) == false || res is not TForm form)
             throw new InvalidOperationException($"Unable to get form {typeof(TForm)}");
 
         await form.InitializeParameterAsync(parameter);
@@ -43,9 +46,9 @@ public class FormService : IFormService
     }
 
     public async Task<TResult> ShowFormAsync<TForm, TResult, TParameter>(TParameter parameter, CancellationToken cancellation = default)
-        where TForm : Popup, IWithParameter<TParameter>, IWithResult<TResult>
+        where TForm : ContentView, IWithParameter<TParameter>, IWithResult<TResult>
     {
-        if (_popups.TryGetValue(typeof(TForm), out var res) == false || res is not TForm form)
+        if (_forms.TryGetValue(typeof(TForm), out var res) == false || res is not TForm form)
             throw new InvalidOperationException($"Unable to get form {typeof(TForm)}");
 
         await form.InitializeParameterAsync(parameter);
@@ -54,9 +57,16 @@ public class FormService : IFormService
         return await form.AwaitResultAsync(cancellation);
     }
 
-    private Task OpenPopupAsync(Popup popup, CancellationToken cancellation)
+    private Task OpenPopupAsync(ContentView form, CancellationToken cancellation)
     {
-        var page = Shell.Current.CurrentPage;
-        return page.ShowPopupAsync(popup, token: cancellation);
+        if (form is IClosable closable)
+            closable.CloseAsyncCallback = ClosePopupAsync;
+
+        return Shell.Current.ShowPopupAsync(form, _popupOptions, cancellation);
+    }
+
+    private static Task ClosePopupAsync()
+    {
+        return Shell.Current.ClosePopupAsync();
     }
 }

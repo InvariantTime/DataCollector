@@ -1,39 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                x:Class="DataCollector.Terminal.App.Forms.AddProductForm"
-               CanBeDismissedByTappingOutsideOfPopup="True"
-               Margin="0"
-               Padding="3">
+             BackgroundColor="Transparent">
+    <VerticalStackLayout>
+        <Label Margin="10" x:Name="_labelDis" x:FieldModifier="private" />
 
-    <Border Stroke="Green" 
-            StrokeThickness="3" 
-            StrokeShape="RoundRectangle 20"
-            Background="Transparent">
+        <HorizontalStackLayout HorizontalOptions ="Center" Padding="20">
+            <Label Text="Name" Margin="10" HorizontalOptions="Center"/>
+            <Entry MinimumWidthRequest="300"/>
+        </HorizontalStackLayout>
 
-        <VerticalStackLayout >
-
-
-            <Label Margin="10" x:Name="_labelDis" x:FieldModifier="private" />
-
-
-            <HorizontalStackLayout HorizontalOptions ="Center" Padding="20">
-                <Label Text="Name" Margin="10" HorizontalOptions="Center"/>
-                <Entry MinimumWidthRequest="300"/>
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Label Text="Discription" Margin="10"/>
-                <Entry  MinimumWidthRequest="300"/>
-            </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Discription" Margin="10"/>
+            <Entry  MinimumWidthRequest="300"/>
+        </HorizontalStackLayout>
 
 
-            <Button Text="Add" Margin="20" Clicked="AddProduct"/>
+        <Button Text="Add" Margin="20" Clicked="AddProduct"/>
 
-            <Button Text="Cancel" Clicked="OnCloseAsync"/>
+        <Button Text="Cancel" Clicked="OnCloseAsync"/>
 
-        </VerticalStackLayout>
-    </Border>
-</toolkit:Popup>
-    
+    </VerticalStackLayout>
+</ContentView>

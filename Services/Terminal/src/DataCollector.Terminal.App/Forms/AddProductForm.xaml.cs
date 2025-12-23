@@ -3,7 +3,7 @@ using CommunityToolkit.Maui.Views;
 
 namespace DataCollector.Terminal.App.Forms;
 
-public partial class AddProductForm : Popup
+public partial class AddProductForm : ContentView
 {
     public AddProductForm()
     {
@@ -17,6 +17,5 @@ public partial class AddProductForm : Popup
 
     public void OnCloseAsync(object sender, EventArgs e)
     {
-        CloseAsync();
     }
 }

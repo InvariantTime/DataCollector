@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               xmlns:local="clr-namespace:DataCollector.Terminal.App.Forms"
-               x:Class="DataCollector.Terminal.App.Forms.NotificationForm"
-               CanBeDismissedByTappingOutsideOfPopup="True">
+               x:Class="DataCollector.Terminal.App.Forms.NotificationForm" BackgroundColor="Transparent">
+    <VerticalStackLayout>
+        <Label Margin="20" FontSize="Header" HorizontalOptions="Center"
+               x:Name="_title" x:FieldModifier="private" />
 
-    <Border Stroke="Red" 
-            StrokeThickness="3" 
-            StrokeShape="RoundRectangle 20"
-            Background="Transparent">
+        <ScrollView MaximumWidthRequest="300" Margin="0 0 30 0" Padding="5" MinimumHeightRequest="150"
+                    MaximumHeightRequest="250" BackgroundColor="#202024" Shadow="Transparent 0 0">
+            
+            <Label FontSize="Medium"
+                x:Name="_description" x:FieldModifier="private" />
+        </ScrollView>
 
-        <VerticalStackLayout >
-            <Label Margin="10" x:Name="_title" x:FieldModifier="private" />
-
-            <Label Margin="10" x:Name="_description" x:FieldModifier="private" />
-
-            <Button Text="Ok" Clicked="OnCloseAsync"/>
-
-        </VerticalStackLayout>
-    </Border>
-</toolkit:Popup>
-    
-    
+        <Button Text="Ok" Clicked="OnCloseAsync"/>
+    </VerticalStackLayout>
+</ContentView>

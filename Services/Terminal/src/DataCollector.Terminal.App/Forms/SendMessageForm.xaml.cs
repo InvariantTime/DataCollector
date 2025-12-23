@@ -1,8 +1,7 @@
-using CommunityToolkit.Maui.Views;
 
 namespace DataCollector.Terminal.App.Forms;
 
-public partial class SendMessageForm : Popup
+public partial class SendMessageForm : ContentView
 {
     public SendMessageForm()
     {
@@ -11,12 +10,9 @@ public partial class SendMessageForm : Popup
 
     public void OnCloseAsync(object sender, EventArgs e)
     {
-        CloseAsync();
     }
 
     public void OnSendMessageWorkers(object sender, EventArgs e)
     {
-
     }
-
 }

@@ -8,13 +8,13 @@ public class MqttConnectionProvider : IBrokerConnection
 
     public bool IsConnected => _currentConnection != null && _currentConnection.IsConnected == true;
 
-    public bool ApplyConnectionSettings(MqttOptions options)
+    public async Task<bool> ApplyConnectionSettingsAsync(MqttOptions options)
     {
         try
         {
             _currentConnection = new MqttConnection(options);
-            _currentConnection.ReconnectAsync().Wait();
-            return true;
+            bool result = await _currentConnection.ReconnectAsync();
+            return result;
         }
         catch
         {

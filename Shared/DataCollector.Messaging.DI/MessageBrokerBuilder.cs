@@ -63,7 +63,7 @@ public class MessageBrokerBuilder
         services.AddSingleton<IConsumerCallbackFactory, DefaultCallbackFactory>();
 
         foreach (var consumer in _consumers)
-            services.AddSingleton(typeof(IMessageConsumer), consumer);
+            services.AddScoped(typeof(IMessageConsumer), consumer);
 
         services.AddSingleton(scope =>
         {
@@ -76,10 +76,10 @@ public class MessageBrokerBuilder
             if (factory == null)
                 throw new NullReferenceException("Unable to create callback factory");
 
+            var consumerScope = scope.CreateScope();
             IMessageBroker broker = new MessageBroker(connection, factory, _endpoints);
-            IEnumerable<IMessageConsumer> consumers = scope.GetRequiredService<IEnumerable<IMessageConsumer>>();
 
-            return new MessageBrokerService(broker, consumers);
+            return new MessageBrokerService(broker, consumerScope);
         });
 
         services.AddSingleton<IMessageBroker>(scope =>

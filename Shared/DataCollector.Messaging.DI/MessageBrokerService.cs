@@ -1,5 +1,6 @@
 ﻿using DataCollector.Messaging.Core;
 using DataCollector.Messaging.Core.Consuming;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Immutable;
 
 namespace DataCollector.Messaging.DI;
@@ -7,25 +8,28 @@ namespace DataCollector.Messaging.DI;
 public class MessageBrokerService : IMessageBroker
 {
     private readonly IMessageBroker _broker;
-    private readonly ImmutableArray<IMessageConsumer> _baseConsumers;
 
     public bool IsStarted { get; private set; } = false;
 
-    public int ConsumersCount => _baseConsumers.Length;
+    public IServiceScope ConsumersScope { get; }
 
-    public MessageBrokerService(IMessageBroker broker, IEnumerable<IMessageConsumer> consumers)
+    public MessageBrokerService(IMessageBroker broker, IServiceScope consumersScope)
     {
         _broker = broker;
-        _baseConsumers = consumers.ToImmutableArray();
+        ConsumersScope = consumersScope;
     }
 
-    public async Task StartAsync()
+    public async Task<int> StartAsync()
     {
         if (IsStarted == true)
             throw new InvalidOperationException("Broker service is already started");
 
-        foreach (var consumer in _baseConsumers)
+        var consumers = ConsumersScope.ServiceProvider.GetRequiredService<IEnumerable<IMessageConsumer>>();
+        
+        foreach (var consumer in consumers)
             await _broker.SubscribeAsync(consumer);
+
+        return consumers.Count();
     }
 
     public Task PublishAsync<T>(T message) where T : class

@@ -2,33 +2,28 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataCollector.Terminal.App.Controls.UsersList">
-    <VerticalStackLayout>
-        <CollectionView SelectionMode="Single">
+    <CollectionView SelectionMode="Single">
 
-            <CollectionView.Header>
-                <Label Text="Список пользователей" HorizontalOptions="Center" FontSize="Medium" Margin="0 0 20 0"/>
-            </CollectionView.Header>
-            
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Hello</x:String>
-                    <x:String>Hello</x:String>
-                    <x:String>Hello</x:String>
-                    <x:String>Hello</x:String>
-                    <x:String>Hello</x:String>
-                    <x:String>Hello</x:String>
-                    <x:String>Hello</x:String>
-                </x:Array>
-            </CollectionView.ItemsSource>
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>Hello</x:String>
+                <x:String>Hello</x:String>
+                <x:String>Hello</x:String>
+                <x:String>Hello</x:String>
+                <x:String>Hello</x:String>
+                <x:String>Hello</x:String>
+                <x:String>Hello</x:String>
+            </x:Array>
+        </CollectionView.ItemsSource>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Text="Hello"/>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-
-        </CollectionView>
-    </VerticalStackLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <VerticalStackLayout Padding="5">
+                    <BoxView HeightRequest="2" Margin="0 30 0 30" BackgroundColor="{StaticResource StrokeColor}"/>
+                    <Label Text="Hello" FontSize="Subtitle" Margin="0 0 0 10"/>
+                    <Label Text="Admin" Margin="0 0 0 30"/>
+                </VerticalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentView>

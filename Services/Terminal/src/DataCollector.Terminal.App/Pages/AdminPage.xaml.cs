@@ -1,6 +1,7 @@
 using CommunityToolkit.Maui.Extensions;
 
 using DataCollector.Terminal.App.Controls;
+using DataCollector.Terminal.App.Forms;
 
 namespace DataCollector.Terminal.App.Pages;
 
@@ -29,12 +30,7 @@ public partial class AdminPage : ContentPage
 
     public void OnAdminAction(object sender, EventArgs e)
     {
-        this.ShowPopup(new AdminAction(this));
     }
-
-
-
-
 }
 
 public class User

@@ -27,6 +27,7 @@
     <Color x:Key="Gray950">#141414</Color>
 
     <Color x:Key="PageBackgroundColor">#202024</Color>
+    <Color x:Key="StrokeColor">#353540</Color>
     <Color x:Key="PrimaryBackground">#800080</Color>
     <Color x:Key="ActiveBackground">#940494</Color>
     <Color x:Key="ClickedBackground">#750275</Color>

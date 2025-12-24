@@ -1,40 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DataCollector.Terminal.App.Controls"
              x:Class="DataCollector.Terminal.App.Pages.AdminPage"
              Title="AdminPage">
 
-    <Grid>
+    <VerticalStackLayout>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        <Label Text="User list" HorizontalOptions="Center" FontSize="Medium" Margin="20 0 10 0"/>
 
-        <Button Text="Apply" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="OnAdminAction" Grid.Row="0" Grid.Column="0" />
+        <controls:UsersList HorizontalOptions="Center" MaximumHeightRequest="400"
+                            MaximumWidthRequest="400" Margin="0 0 40 0"/>
 
-        <Label Text="Список пользователей" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"/>
-
-        <CollectionView ItemsSource="{Binding Users}"  HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" >
-
-            <CollectionView.ItemTemplate >
-                <DataTemplate>
-                    <HorizontalStackLayout HorizontalOptions="Center">
-
-                        <CheckBox  HorizontalOptions="Center"/>
-                        <Label Text="{Binding Name}" Margin="15" HorizontalOptions="Center"/>
-                        <Label Text="{Binding Age}" Margin="15" HorizontalOptions="Center"/>
-                        <Label Text="{Binding Role}" Margin="15" HorizontalOptions="Center"/>
-
-                    </HorizontalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-
-    </Grid>
+        <Button Text="Back" WidthRequest="200" 
+                HeightRequest="50" FontSize="Medium" Clicked="OnAdminAction"/>
+    </VerticalStackLayout>
 
 </ContentPage> 

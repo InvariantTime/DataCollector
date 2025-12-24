@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DataCollector.Terminal.App.Pages.PickPage"
-             Title="PickPage">
+             x:Class="DataCollector.Terminal.App.Pages.PickPage">
     
     <VerticalStackLayout VerticalOptions="Center">
 
-        <Button Text="Scanning" WidthRequest="200"  HeightRequest="50"  Margin="20" FontSize="Medium" Clicked="NavigateToScanning"/>
-        <Button Text="Add Product..." WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="NavigateToAddRpoduct" />
-        <Button Text="Admin Page" WidthRequest="200" HeightRequest="50" Margin="20" FontSize="Medium" Clicked="NavigateToAdminPage"/>
+        <Button Text="Scanning" Margin="20" MaximumWidthRequest="300" 
+                Command="{Binding GoToScanningCommand}"/>
+        
+        <Button Text="Add Product" Margin="20" MaximumWidthRequest="300" 
+                Command="{Binding GoToAddProductCommand}" IsVisible="{Binding CanAddProduct}"/>
+        
+        <Button Text="Admin Page" Margin="20" MaximumWidthRequest="300" 
+                Command="{Binding GoToAdminPageCommand}" IsVisible="{Binding CanUseAdminPage}"/>
 
     </VerticalStackLayout>
 </ContentPage>

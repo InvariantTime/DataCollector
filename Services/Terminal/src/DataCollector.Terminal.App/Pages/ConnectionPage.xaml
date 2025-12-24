@@ -3,7 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataCollector.Terminal.App.Pages.ConnectionPage"
              Title="ConnectionPage">
+
     <VerticalStackLayout>
-        
+        <Label Text="Server connection" HorizontalOptions="Center" FontSize="Large" Margin="25"/>
+
+        <VerticalStackLayout HorizontalOptions="Center">
+
+            <Label Text="Address" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Entry MaximumWidthRequest="300" Placeholder="localhost:1883"
+                   MinimumWidthRequest="300"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
+
+            <Label Text="User" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Entry MaximumWidthRequest="300" Placeholder="Enter user name..."
+                   MinimumWidthRequest="300" HorizontalOptions="End"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
+
+            <Label Text="Password" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Entry MaximumWidthRequest="300" Placeholder="Enter user password..."
+                   MinimumWidthRequest="300" HorizontalOptions="End"/>
+        </VerticalStackLayout>
+
+        <Button Text="Submit" WidthRequest="200" HeightRequest="50" Margin="20 0 0 0" FontSize="Medium" />
+
     </VerticalStackLayout>
 </ContentPage>

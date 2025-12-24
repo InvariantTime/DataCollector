@@ -2,9 +2,9 @@ using DataCollector.Terminal.App.ViewModels;
 
 namespace DataCollector.Terminal.App.Pages;
 
-public partial class PickPage : ContentPage
+public partial class RegisterPage : ContentPage
 {
-    public PickPage(PickPageViewModel viewModel)
+    public RegisterPage(RegisterPageViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

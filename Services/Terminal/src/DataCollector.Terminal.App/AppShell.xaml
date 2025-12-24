@@ -7,6 +7,6 @@
     xmlns:pages="clr-namespace:DataCollector.Terminal.App.Pages">
 
     <ShellContent
-        ContentTemplate="{DataTemplate pages:RegisterPage}"/>
+        ContentTemplate="{DataTemplate pages:ConnectionPage}"/>
 
 </Shell>

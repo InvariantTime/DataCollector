@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\Server\DataCollector.Server.Domain\DataCollector.Server.Domain.csproj" />
-    <ProjectReference Include="..\..\Services\Server\DataCollector.Server.Services\DataCollector.Server.Services.csproj" />
+    <ProjectReference Include="..\..\Services\Server\src\DataCollector.Server.Domain\DataCollector.Server.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\Server\src\DataCollector.Server.Services\DataCollector.Server.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

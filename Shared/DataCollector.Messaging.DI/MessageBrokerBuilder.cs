@@ -21,7 +21,11 @@ public class MessageBrokerBuilder
     {
         UseConnection((services) =>
         {
-            services.AddSingleton<IBrokerConnection, T>();
+            services.AddSingleton<T>();
+            services.AddSingleton<IBrokerConnection>((scope) =>
+            {
+                return scope.GetRequiredService<T>();
+            });
         });
     }
 

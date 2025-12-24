@@ -30,4 +30,15 @@ public class ConsumeContext<T> : IMessageBroker where T : class
     {
         return _broker.SubscribeAsync(handler);
     }
+
+    public Task PublishAsync<TMessage>(TMessage context, Uri uri) where TMessage : class
+    {
+        return _broker.PublishAsync(context, uri);
+    }
+
+    public Task<IDisposable> SubscribeAsync<TMessage>(IMessageConsumer<TMessage> handler, Uri uri)
+        where TMessage : class
+    {
+        return _broker.SubscribeAsync(handler, uri);
+    }
 }

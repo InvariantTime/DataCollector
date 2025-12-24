@@ -19,4 +19,17 @@ public static class BrokerBuilderExtensions
             });
         });
     }
+
+    public static void UseRabbitMq(this MessageBrokerBuilder builder, Func<RabbitMQOptions> optionsFunc)
+    {
+        builder.UseConnection((services) =>
+        {
+            var options = optionsFunc.Invoke();
+
+            services.AddSingleton<IBrokerConnection, RabbitMQConnection>((_) =>
+            {
+                return new RabbitMQConnection(options);
+            });
+        });
+    }
 }

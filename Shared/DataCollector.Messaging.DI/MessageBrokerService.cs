@@ -42,4 +42,14 @@ public class MessageBrokerService : IMessageBroker
     {
         return _broker.SubscribeAsync(consumer);
     }
+
+    public Task PublishAsync<T>(T message, Uri uri) where T : class
+    {
+        return _broker.PublishAsync(message, uri);
+    }
+
+    public Task<IDisposable> SubscribeAsync<T>(IMessageConsumer<T> consumer, Uri uri) where T : class
+    {
+        return _broker.SubscribeAsync(consumer, uri);
+    }
 }

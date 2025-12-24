@@ -4,21 +4,15 @@
                x:Class="DataCollector.Terminal.App.Forms.AddProductForm"
              BackgroundColor="Transparent">
     <VerticalStackLayout>
-        <Label Margin="10" x:Name="_labelDis" x:FieldModifier="private" />
+        <Label Margin="10" x:Name="_title" x:FieldModifier="private"/>
 
-        <HorizontalStackLayout HorizontalOptions ="Center" Padding="20">
-            <Label Text="Name" Margin="10" HorizontalOptions="Center"/>
-            <Entry MinimumWidthRequest="300"/>
-        </HorizontalStackLayout>
+        <Label Text="Name" Margin="10" HorizontalOptions="Center"/>
+        <Entry MinimumWidthRequest="300" x:Name="_nameTextbox" x:FieldModifier="private"/>
 
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="Discription" Margin="10"/>
-            <Entry  MinimumWidthRequest="300"/>
-        </HorizontalStackLayout>
+        <Label Text="Description" Margin="10"/>
+        <Entry  MinimumWidthRequest="300" x:Name="_descriptionTextbox" x:FieldModifier="private"/>
 
-
-        <Button Text="Add" Margin="20" Clicked="AddProduct"/>
-
+        <Button Text="Add" Margin="20" Clicked="OnAddProduct"/>
         <Button Text="Cancel" Clicked="OnCloseAsync"/>
 
     </VerticalStackLayout>

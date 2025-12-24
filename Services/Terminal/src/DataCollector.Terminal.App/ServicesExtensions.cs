@@ -4,6 +4,7 @@ using DataCollector.Terminal.App.Forms;
 using DataCollector.Terminal.App.MVVM;
 using DataCollector.Terminal.App.Services;
 using DataCollector.Terminal.App.ViewModels;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace DataCollector.Terminal.App;
@@ -21,6 +22,7 @@ public static class ServicesExtensions
         services.AddSingleton<PickPageViewModel>();
         services.AddSingleton<ScanningPageViewModel>();
         services.AddSingleton<AddProductPageViewModel>();
+        services.TryAddSingleton<ConnectionPageViewModel>();
     }
 
     public static void AddReguiredPopups(this IServiceCollection services)

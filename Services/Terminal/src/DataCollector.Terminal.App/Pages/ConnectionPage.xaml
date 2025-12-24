@@ -2,7 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataCollector.Terminal.App.Pages.ConnectionPage"
-             Title="ConnectionPage">
+             xmlns:converters ="clr-namespace:DataCollector.Terminal.App.Converters">
+
+
+    <ContentPage.Resources>
+        <converters:ConnectionDTOConverter x:Key="_converter" />
+    </ContentPage.Resources>
 
     <VerticalStackLayout>
         <Label Text="Server connection" HorizontalOptions="Center" FontSize="Large" Margin="25"/>
@@ -11,24 +16,37 @@
 
             <Label Text="Address" VerticalOptions="Center" Margin="0 0 10 0"/>
             <Entry MaximumWidthRequest="300" Placeholder="localhost:1883"
-                   MinimumWidthRequest="300"/>
+                   MinimumWidthRequest="300" x:Name="_addressEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
         <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
 
             <Label Text="User" VerticalOptions="Center" Margin="0 0 10 0"/>
             <Entry MaximumWidthRequest="300" Placeholder="Enter user name..."
-                   MinimumWidthRequest="300" HorizontalOptions="End"/>
+                   MinimumWidthRequest="300" HorizontalOptions="End" x:Name="_userEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
         <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
 
             <Label Text="Password" VerticalOptions="Center" Margin="0 0 10 0"/>
             <Entry MaximumWidthRequest="300" Placeholder="Enter user password..."
-                   MinimumWidthRequest="300" HorizontalOptions="End"/>
+                   MinimumWidthRequest="300" HorizontalOptions="End" x:Name="_passwordEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
-        <Button Text="Submit" WidthRequest="200" HeightRequest="50" Margin="20 0 0 0" FontSize="Medium" />
+        <VerticalStackLayout>
+            <Label Text="{Binding Error}" TextColor="{StaticResource ErrorColor}" 
+                   HorizontalOptions="Center" Margin="10" IsEnabled="{Binding HasError}" FontSize="Subtitle" />
+        </VerticalStackLayout>
 
+        <Button Text="Submit" WidthRequest="200" HeightRequest="50" Margin="20 0 0 0"
+                FontSize="Medium" Command="{Binding ConnectCommand}" >
+            <Button.CommandParameter>
+                <MultiBinding   Converter="{StaticResource _converter}">
+                    <Binding Source="{Reference Name=_addressEntry}" Path="Text"/>
+                    <Binding Source="{Reference Name=_userEntry}" Path="Text"/>
+                    <Binding Source="{Reference Name=_passwordEntry}" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
     </VerticalStackLayout>
 </ContentPage>

@@ -4,14 +4,14 @@ using DataCollector.Terminal.App.DTOs;
 
 namespace DataCollector.Terminal.App.ViewModels;
 
-public class ConnectionPageVewModel : ViewModel
+public class ConnectionPageViewModel : ViewModel
 {
     private MqttConnectionProvider _connectionProvider;
 
     public IAsyncCommand<ConnectionDTO> ConnectCommand =>
         field ??= AsyncCommand.Create<ConnectionDTO>(ConnectAsync);
 
-    public ConnectionPageVewModel(MqttConnectionProvider connection)
+    public ConnectionPageViewModel(MqttConnectionProvider connection)
     {
         _connectionProvider = connection;
     }

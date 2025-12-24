@@ -32,4 +32,6 @@
     <Color x:Key="ActiveBackground">#940494</Color>
     <Color x:Key="ClickedBackground">#750275</Color>
     <Color x:Key="TextColor">#E5E7EB</Color>
+
+    <Color x:Key="ErrorColor">#DC143C</Color>
 </ResourceDictionary>

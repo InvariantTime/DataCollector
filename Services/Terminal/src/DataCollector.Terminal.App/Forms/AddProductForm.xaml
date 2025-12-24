@@ -2,18 +2,20 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                x:Class="DataCollector.Terminal.App.Forms.AddProductForm"
-             BackgroundColor="Transparent">
+             BackgroundColor="Transparent"
+             x:Name="this">
     <VerticalStackLayout>
-        <Label Margin="10" x:Name="_title" x:FieldModifier="private"/>
+        <Label Margin="10" FontSize="Medium" HorizontalOptions="Center"
+               Text="{Binding Source={x:Reference this}, Path=Barcode}"/>
 
-        <Label Text="Name" Margin="10" HorizontalOptions="Center"/>
+        <Label Text="Name" Margin="10"/>
         <Entry MinimumWidthRequest="300" x:Name="_nameTextbox" x:FieldModifier="private"/>
 
         <Label Text="Description" Margin="10"/>
         <Entry  MinimumWidthRequest="300" x:Name="_descriptionTextbox" x:FieldModifier="private"/>
 
-        <Button Text="Add" Margin="20" Clicked="OnAddProduct"/>
-        <Button Text="Cancel" Clicked="OnCloseAsync"/>
+        <Button Text="Add" Margin="40 0 20 0" MaximumWidthRequest="200" Clicked="OnAddProduct"/>
+        <Button Text="Cancel" MaximumWidthRequest="200" Clicked="OnCloseAsync"/>
 
     </VerticalStackLayout>
 </ContentView>

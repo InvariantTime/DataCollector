@@ -64,23 +64,56 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Consumers\" />
 	  <Folder Include="Resources\Images\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\AddProductForm.xaml">
+	  <ProjectReference Include="..\..\..\..\Shared\DataCollector.Domain\DataCollector.Domain.csproj" />
+	  <ProjectReference Include="..\..\..\..\Shared\DataCollector.Shared\DataCollector.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Forms\NotificationForm.xaml.cs">
+	    <DependentUpon>NotificationForm.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Forms\AdminActionForm.xaml.cs">
+	    <DependentUpon>AdminActionForm.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Forms\SendMessageForm.xaml.cs">
+	    <DependentUpon>SendMessageForm.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\AddProductPage.xaml.cs">
+	    <DependentUpon>AddProductPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\RegisterPage.xaml.cs">
+	    <DependentUpon>RegisterPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\ScanningPage.xaml.cs">
+	    <DependentUpon>ScanningPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Controls\Scanner.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\AdminAction.xaml">
+	  <MauiXaml Update="Forms\AddProductForm.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\MessageForm.xaml">
+	  <MauiXaml Update="Forms\AdminActionForm.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\MessageWindow.xaml">
+	  <MauiXaml Update="Forms\SendMessageForm.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AddProduct.xaml">
+	  <MauiXaml Update="Forms\NotificationForm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\UsersList.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\AdminPage.xaml">
@@ -92,10 +125,10 @@
 	  <MauiXaml Update="Pages\PickPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Registration.xaml">
+	  <MauiXaml Update="Pages\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Scanning.xaml">
+	  <MauiXaml Update="Pages\ScanningPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

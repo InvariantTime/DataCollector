@@ -70,9 +70,6 @@ public class ConnectionPageViewModel : ViewModel
         if (result == false)
             return Result.Failed("Unable to connect server");
 
-        SetProcess(false);
-        await NavigateAsync<RegisterPage>();
-
         return Result.Success();
     }
 

@@ -1,4 +1,6 @@
 ﻿
+using DataCollector.Domain;
+
 namespace DataCollector.Server.Domain;
 
 public class User
@@ -9,5 +11,5 @@ public class User
 
     public string PasswordHash { get; set; } = string.Empty;
 
-    public UserRoles Role { get; set; } = UserRoles.Scanner;
+    public UserRoles Role { get; set; } = UserRoles.User;
 }

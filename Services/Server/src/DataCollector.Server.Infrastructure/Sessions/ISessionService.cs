@@ -5,11 +5,9 @@ namespace DataCollector.Server.Infrastructure.Sessions;
 
 public interface ISessionService
 {
-    IReadOnlyCollection<UserSession> Sessions { get; }
+    IReadOnlyDictionary<Guid, UserSession> Sessions { get; }
 
     Task<Result<Guid>> ConnectSessionAsync(User user);
 
     Task<Result> DisconnectSessionAsync(Guid sessionId);
-
-    Task<Result> SendMessageAsync(Guid sessionId);
 }

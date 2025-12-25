@@ -24,6 +24,9 @@ public class RegisterService : IRegisterService
         var result = await remote.ExecuteRemoteAsync(new RegisterRequestMessage(dto.Name, dto.Password), cancellation);
 
 
+        if (result == null)
+            return Result.Failed("Unable to get responce");
+
         if (result.Result == false)
             return Result.Failed(result.ErrorMessage);
 

@@ -17,10 +17,10 @@ public class BrokerStartupService : IHostedService
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        await _service.StartAsync();
+        int consumersCount = await _service.StartAsync();
 
         _logger.LogInformation("Message broker started!");
-        _logger.LogInformation("Consumers count: {0}", _service.ConsumersCount);
+        _logger.LogInformation("Consumers count: {0}", consumersCount);
     }
 
     public Task StopAsync(CancellationToken cancellationToken)

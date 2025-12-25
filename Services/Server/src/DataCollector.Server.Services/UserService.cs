@@ -1,4 +1,5 @@
-﻿using DataCollector.Server.Domain;
+﻿using DataCollector.Domain;
+using DataCollector.Server.Domain;
 using DataCollector.Server.Persistence.Repositories;
 using DataCollector.Server.Services.Hashing;
 using DataCollector.Server.Services.Interfaces;
@@ -30,7 +31,7 @@ public class UserService : IUserService
         {
             Name = name,
             PasswordHash = passwordHash,
-            Role = UserRoles.Scanner
+            Role = UserRoles.User
         };
 
         return _users.AddUserAsync(user);
@@ -45,11 +46,16 @@ public class UserService : IUserService
 
         var hash = user.Value!.PasswordHash;
 
-        var result = _hasher.Verify(hash, password);
+        var result = _hasher.Verify(password, hash);
 
         if (result == false)
             return Result.Failed<User>("Invalid name or login");
 
         return Result.Success(user.Value);
+    }
+
+    public Task UpdateUser(User user)
+    {
+        return _users.UpdateUserAsync(user);
     }
 }

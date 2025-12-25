@@ -16,36 +16,34 @@
 
         <VerticalStackLayout HorizontalOptions="Center">
 
-            <Label Text="Address" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Label Text="Address" VerticalOptions="Center" Margin="10"/>
             <Entry MaximumWidthRequest="300" Placeholder="localhost:1883"
                    MinimumWidthRequest="300" x:Name="_addressEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
-        <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
+        <VerticalStackLayout HorizontalOptions="Center" Margin="20">
 
-            <Label Text="User" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Label Text="User" VerticalOptions="Center" Margin="10"/>
             <Entry MaximumWidthRequest="300" Placeholder="Enter user name..."
                    MinimumWidthRequest="300" HorizontalOptions="End" x:Name="_userEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
-        <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
+        <VerticalStackLayout HorizontalOptions="Center" Margin="20">
 
-            <Label Text="Password" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Label Text="Password" VerticalOptions="Center" Margin="10"/>
             <Entry MaximumWidthRequest="300" Placeholder="Enter user password..."
                    MinimumWidthRequest="300" HorizontalOptions="End" x:Name="_passwordEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
-        <VerticalStackLayout>
-            <Label Text="{Binding Error}" TextColor="{StaticResource ErrorColor}" 
+        <Label Text="{Binding Error}" TextColor="{StaticResource ErrorColor}" 
                    HorizontalOptions="Center" Margin="10" IsEnabled="{Binding HasError}" FontSize="Subtitle" />
-        </VerticalStackLayout>
 
         <Grid HeightRequest="100">
             <Button Text="Submit" IsVisible="{Binding IsProcessing, Converter={StaticResource _inverser}}"
                 WidthRequest="200" HeightRequest="50"
                 FontSize="Medium" Command="{Binding ConnectCommand}" >
                 <Button.CommandParameter>
-                    <MultiBinding   Converter="{StaticResource _converter}">
+                    <MultiBinding Converter="{StaticResource _converter}">
                         <Binding Source="{Reference Name=_addressEntry}" Path="Text"/>
                         <Binding Source="{Reference Name=_userEntry}" Path="Text"/>
                         <Binding Source="{Reference Name=_passwordEntry}" Path="Text"/>

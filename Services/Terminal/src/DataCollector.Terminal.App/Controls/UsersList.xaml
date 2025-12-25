@@ -19,9 +19,9 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout Padding="5">
-                    <BoxView HeightRequest="2" Margin="0 30 0 30" BackgroundColor="{StaticResource StrokeColor}"/>
-                    <Label Text="Hello" FontSize="Subtitle" Margin="0 0 0 10"/>
-                    <Label Text="Admin" Margin="0 0 0 30"/>
+                    <BoxView HeightRequest="2" Margin="30" BackgroundColor="{StaticResource StrokeColor}"/>
+                    <Label Text="Hello" FontSize="Subtitle" Margin="10"/>
+                    <Label Text="Admin" Margin="30"/>
                 </VerticalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>

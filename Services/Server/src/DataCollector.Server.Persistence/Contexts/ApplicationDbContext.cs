@@ -12,6 +12,7 @@ public class ApplicationDbContext : DbContext
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
+        Database.EnsureCreated();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,6 +26,7 @@ public class ApplicationDbContext : DbContext
         users.HasAlternateKey(x => x.Name);
         users.Property(x => x.Name).HasMaxLength(30);
         users.Property(x => x.Role);
+        users.Property(x => x.PasswordHash).HasMaxLength(128);
 
         products.HasKey(x => x.Id);
         products.HasAlternateKey(x => x.BarCode);

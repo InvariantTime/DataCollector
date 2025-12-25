@@ -24,7 +24,7 @@ public readonly struct Result
 
     public Result(bool isSuccess, string? error = null)
     {
-        IsSuccess = IsSuccess;
+        IsSuccess = isSuccess;
         Error = error ?? string.Empty;
     }
 

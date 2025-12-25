@@ -12,7 +12,7 @@
         <controls:Scanner Grid.Row="0" x:Name="_scanner" x:FieldModifier="private"/>
 
         <VerticalStackLayout Grid.Row="1">
-            <Button Text="Add..." Margin="10 0 10 0" WidthRequest="200" 
+            <Button Text="Add..." Margin="10" WidthRequest="200" 
                     Command="{Binding AddProductCommand}" CommandParameter="{Binding Source={Reference Name=_scanner}, Path=Barcode}"
                     IsEnabled="{Binding Source={Reference Name=_scanner}, Path=IsDetected}"/>
             

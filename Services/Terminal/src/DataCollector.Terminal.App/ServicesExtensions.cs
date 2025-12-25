@@ -13,6 +13,9 @@ public static class ServicesExtensions
     public static void AddRequiredServices(this IServiceCollection services)
     {
         services.AddSingleton<IScanningService, ScanninService>();
+        services.AddSingleton<ISessionProvider, SessionProvider>();
+        services.AddSingleton<IRegisterService, RegisterService>();
+        services.AddSingleton<IAdminService, AdminService>();
     }
 
     public static void AddRequiredViewModels(this IServiceCollection services)

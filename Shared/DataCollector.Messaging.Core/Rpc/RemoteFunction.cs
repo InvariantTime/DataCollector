@@ -7,40 +7,63 @@ public class RemoteFunction<TArg, TResult> : IDisposable
     where TResult : class
 {
     private readonly IMessageBroker _broker;
+    private readonly Uri? _responceUri;
 
     private IDisposable? _consumerHolder;
     private TaskCompletionSource<TResult> _tcs;
 
-    public RemoteFunction(IMessageBroker broker)
+    public RemoteFunction(IMessageBroker broker, Uri? responceUri = null)
     {
         _tcs = new TaskCompletionSource<TResult>();
         _broker = broker;
+        _responceUri = responceUri;
     }
 
-    public async Task<TResult> ExecuteRemoteAsync(TArg arg, CancellationToken cancellation)
+    public async Task<TResult?> ExecuteRemoteAsync(TArg arg, CancellationToken cancellation)
     {
         if (_consumerHolder == null)
             _consumerHolder = await CreateConsumerAsync();
 
         await _broker.PublishAsync(arg);
 
-        var data = await _tcs.Task.WaitAsync(cancellation);
-        _tcs = new TaskCompletionSource<TResult>();
+        try
+        {
+            var data = await _tcs.Task.WaitAsync(cancellation);
+            _tcs = new TaskCompletionSource<TResult>();
 
-        return data;
+            return data;
+        }
+        catch (OperationCanceledException)
+        {
+            return null;
+        }
     }
 
-    public async Task<TResult> ExecuteRemoteAsync(TArg arg, Uri request, CancellationToken cancellation)
+    public async Task<TResult?> ExecuteRemoteAsync(TArg arg, Uri? requestUri = null, CancellationToken cancellation = default)
     {
         if (_consumerHolder == null)
             _consumerHolder = await CreateConsumerAsync();
 
-        await _broker.PublishAsync(arg, request);
+        if (requestUri == null)
+        {
+            await _broker.PublishAsync(arg);
+        }
+        else
+        {
+            await _broker.PublishAsync(arg, requestUri);
+        }
 
-        var data = await _tcs.Task.WaitAsync(cancellation);
-        _tcs = new TaskCompletionSource<TResult>();
+        try
+        {
+            var data = await _tcs.Task.WaitAsync(cancellation);
+            _tcs = new TaskCompletionSource<TResult>();
 
-        return data;
+            return data;
+        }
+        catch (OperationCanceledException)
+        {
+            return null;
+        }
     }
 
     public void Dispose()
@@ -51,7 +74,11 @@ public class RemoteFunction<TArg, TResult> : IDisposable
     private Task<IDisposable> CreateConsumerAsync()
     {
         var lambdaConsumer = new LambdaConsumer<TResult>(OnMessageRecived);
-        return _broker.SubscribeAsync(lambdaConsumer);
+
+        if (_responceUri == null)
+            return _broker.SubscribeAsync(lambdaConsumer);
+
+        return _broker.SubscribeAsync(lambdaConsumer, _responceUri);
     }
 
     private Task OnMessageRecived(ConsumeContext<TResult> context)

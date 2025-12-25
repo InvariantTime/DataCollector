@@ -1,13 +1,17 @@
 ﻿using DataCollector.Terminal.App.Commands;
 using DataCollector.Terminal.App.Pages;
+using DataCollector.Terminal.App.Services;
+using System.ComponentModel;
 
 namespace DataCollector.Terminal.App.ViewModels;
 
 public partial class PickPageViewModel : ViewModel
 {
-    public bool CanAddProduct { get; } = true;
+    private readonly ISessionProvider _session;
 
-    public bool CanUseAdminPanel { get; } = true;
+    public bool CanAddProduct => _session.Session?.CanAddProduct ?? false;
+
+    public bool CanUseAdminPanel => _session.Session?.CanUseAdminPage ?? false;
 
     public IAsyncCommand GoToScanningCommand => 
         field ??= AsyncCommand.Create(NavigateToScanningAsync);
@@ -17,6 +21,14 @@ public partial class PickPageViewModel : ViewModel
 
     public IAsyncCommand GoToAdminPageCommand =>
         field ??= AsyncCommand.Create(NavigateToAdminPageAsync);
+
+    public PickPageViewModel(ISessionProvider session)
+    {
+        _session = session;
+
+        if (_session is INotifyPropertyChanged changed)
+            changed.PropertyChanged += OnSessionChanged;
+    }
 
     private Task NavigateToScanningAsync()
     {
@@ -37,5 +49,11 @@ public partial class PickPageViewModel : ViewModel
             return Task.CompletedTask;
 
         return NavigateAsync<AdminPage>();
+    }
+
+    private void OnSessionChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(CanAddProduct));
+        OnPropertyChanged(nameof(CanUseAdminPanel));
     }
 }

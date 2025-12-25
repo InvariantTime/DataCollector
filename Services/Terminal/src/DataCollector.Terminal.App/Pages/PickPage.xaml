@@ -12,7 +12,7 @@
                 Command="{Binding GoToAddProductCommand}" IsVisible="{Binding CanAddProduct}"/>
         
         <Button Text="Admin Page" Margin="20" MaximumWidthRequest="300" 
-                Command="{Binding GoToAdminPageCommand}" IsVisible="{Binding CanUseAdminPage}"/>
+                Command="{Binding GoToAdminPageCommand}" IsVisible="{Binding CanUseAdminPanel}"/>
 
     </VerticalStackLayout>
 </ContentPage>

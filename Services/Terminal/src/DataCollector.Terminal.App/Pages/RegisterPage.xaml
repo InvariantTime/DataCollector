@@ -6,8 +6,8 @@
              xmlns:tconverters="clr-namespace:CommunityToolkit.Maui.Converters;assembly=CommunityToolkit.Maui">
 
     <ContentPage.Resources>
-        <converters:RegisterDTOConverter x:Name="_converter"/>
-        <tconverters:InvertedBoolConverter x:Name="_inverser"/>
+        <converters:RegisterDTOConverter x:Key="_converter"/>
+        <tconverters:InvertedBoolConverter x:Key="_inverser"/>
     </ContentPage.Resources>
 
     <StackLayout VerticalOptions="Center">
@@ -15,15 +15,15 @@
 
         <VerticalStackLayout HorizontalOptions="Center">
             
-            <Label Text="Name" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Label Text="Name" VerticalOptions="Center" Margin="10"/>
             <Entry MaximumWidthRequest="300" Placeholder="Enter email..."
                    MinimumWidthRequest="300"
                    x:Name="_nameEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
-        <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
+        <VerticalStackLayout HorizontalOptions="Center" Margin="20">
 
-            <Label Text="Password" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Label Text="Password" VerticalOptions="Center" Margin="10"/>
             <Entry MaximumWidthRequest="300" Placeholder="Enter password..."
                    MinimumWidthRequest="300" HorizontalOptions="End"
                    x:Name="_passwordEntry" x:FieldModifier="private"/>
@@ -31,14 +31,14 @@
 
         <VerticalStackLayout>
             <Label Text="{Binding Error}" TextColor="{StaticResource ErrorColor}" 
-                   HorizontalOptions="Center" Margin="10" IsEnabled="{Binding HasError}" FontSize="Subtitle" />
+                   HorizontalOptions="Center" Margin="10" IsVisible="{Binding HasError}" FontSize="Subtitle" />
         </VerticalStackLayout>
 
         <Grid HeightRequest="100">
             <Button Text="Submit" WidthRequest="200" 
-                HeightRequest="50" Margin="20 0 0 0" 
+                HeightRequest="50" Margin="20" 
                 VerticalOptions="Center" HorizontalOptions="Center"
-                IsEnabled="{Binding IsProcessing, Converter={StaticResource _inverser}}"
+                IsVisible="{Binding IsProcessing, Converter={StaticResource _inverser}}"
                 FontSize="Medium"  Command="{Binding SubmitCommand}">
 
                 <Button.CommandParameter>

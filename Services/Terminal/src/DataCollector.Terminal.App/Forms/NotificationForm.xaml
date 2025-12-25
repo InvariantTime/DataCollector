@@ -7,7 +7,7 @@
         <Label Margin="20" FontSize="Header" HorizontalOptions="Center"
                x:Name="_title" x:FieldModifier="private" />
 
-        <ScrollView MaximumWidthRequest="300" Margin="0 0 30 0" Padding="5" MinimumHeightRequest="150"
+        <ScrollView MaximumWidthRequest="300" Margin="20" Padding="5" MinimumHeightRequest="150"
                     MaximumHeightRequest="250" BackgroundColor="#202024" Shadow="Transparent 0 0">
             
             <Label FontSize="Medium"

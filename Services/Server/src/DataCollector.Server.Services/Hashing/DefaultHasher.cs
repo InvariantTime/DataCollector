@@ -22,7 +22,7 @@ public class DefaultHasher : IPasswordHasher, IDisposable
         Buffer.BlockCopy(salt, 0, result, 0, _saltSize);
         Buffer.BlockCopy(hash, 0, result, _saltSize, _hashSize);
 
-        return Convert.ToBase64String(result);
+        return Convert.ToHexString(result);
     }
 
     public bool Verify(string password, string passwordHash)
@@ -33,7 +33,7 @@ public class DefaultHasher : IPasswordHasher, IDisposable
         if (passwordHash == null)
             return false;
 
-        byte[] hash = Convert.FromBase64String(passwordHash);
+        byte[] hash = Convert.FromHexString(passwordHash);
         byte[] salt = new byte[_saltSize];
 
         Buffer.BlockCopy(hash, 0, salt, 0, _saltSize);

@@ -40,7 +40,7 @@ public class Session : INotifyPropertyChanged
     {
         var result = _uriRequestMapper.GetOrAdd(message, (value) =>
         {
-            return new Uri($"devices/{Id}/request/{value}");
+            return new Uri($"mqtt:devices/{Id}/request/{value}");
         });
 
         return result;
@@ -50,7 +50,7 @@ public class Session : INotifyPropertyChanged
     {
         var result = _uriResponceMapper.GetOrAdd(message, (value) =>
         {
-            return new Uri($"devices/{Id}/responce/{value}");
+            return new Uri($"mqtt:devices/{Id}/responce/{value}");
         });
 
         return result;

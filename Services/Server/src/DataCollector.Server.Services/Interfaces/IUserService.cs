@@ -9,5 +9,7 @@ public interface IUserService
 
     Task<Result<User>> TryLogInAsync(string name, string password);
 
+    Task UpdateUser(User user);
+
     Task<Result<User>> GetUserById(Guid id);
 }

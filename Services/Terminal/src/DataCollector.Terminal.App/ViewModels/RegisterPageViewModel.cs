@@ -16,9 +16,9 @@ public partial class RegisterPageViewModel : ViewModel
 
     public string? Error { get; private set; }
 
-    public bool HasError { get; private set; }
+    public bool HasError => Error != null;
 
-    public bool IsProcessing { get; private set;  }
+    public bool IsProcessing { get; private set; }
 
     public RegisterPageViewModel(IRegisterService register)
     {
@@ -45,7 +45,7 @@ public partial class RegisterPageViewModel : ViewModel
 
     private void SetError(string? error)
     {
-        Error = null;
+        Error = error;
         OnPropertyChanged(nameof(Error));
         OnPropertyChanged(nameof(HasError));
     }

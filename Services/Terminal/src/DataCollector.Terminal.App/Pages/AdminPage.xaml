@@ -7,10 +7,10 @@
 
     <VerticalStackLayout>
 
-        <Label Text="User list" HorizontalOptions="Center" FontSize="Medium" Margin="20 0 10 0"/>
+        <Label Text="User list" HorizontalOptions="Center" FontSize="Medium" Margin="15"/>
 
         <controls:UsersList HorizontalOptions="Center" MaximumHeightRequest="400"
-                            MaximumWidthRequest="400" Margin="0 0 40 0"/>
+                            MaximumWidthRequest="400" Margin="40"/>
 
         <Button Text="Back" WidthRequest="200" 
                 HeightRequest="50" FontSize="Medium" Clicked="OnAdminAction"/>

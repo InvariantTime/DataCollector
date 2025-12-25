@@ -1,11 +1,12 @@
 using DataCollector.Terminal.App.DTOs;
+using System.Collections;
 
 namespace DataCollector.Terminal.App.Controls;
 
 public partial class UsersList : ContentView
 {
-    public static readonly BindableProperty UsersSourceProperty =
-        BindableProperty.Create(nameof(Users), typeof(IEnumerable<UserDTO>), 
+    public static readonly BindableProperty UsersProperty =
+        BindableProperty.Create(nameof(Users), typeof(IEnumerable), 
             typeof(UsersList), Enumerable.Empty<UserDTO>(), BindingMode.OneWay);
 
     public static readonly BindableProperty SelectedUsersProperty =
@@ -14,9 +15,9 @@ public partial class UsersList : ContentView
 
     public IEnumerable<UserDTO> Users
     {
-        get => (IEnumerable<UserDTO>)GetValue(UsersSourceProperty);
+        get => (IEnumerable<UserDTO>)GetValue(UsersProperty);
 
-        set => SetValue(UsersSourceProperty, value);
+        set => SetValue(UsersProperty, value);
     }
 
     public IEnumerable<UserDTO> SelectedUsers => (IEnumerable<UserDTO>)GetValue(SelectedUsersProperty);

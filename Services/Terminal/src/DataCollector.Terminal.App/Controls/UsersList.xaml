@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DataCollector.Terminal.App.Controls.UsersList">
-    <CollectionView SelectionMode="Single">
+             x:Class="DataCollector.Terminal.App.Controls.UsersList"
+             x:Name="_thisView" x:FieldModifier="private"
+             xmlns:converters="clr-namespace:DataCollector.Terminal.App.Converters">
+
+    <ContentView.Resources>
+        <converters:RoleColorConverter x:Key="_colorConverter"/>
+    </ContentView.Resources>
+    
+    <CollectionView SelectionMode="Single" ItemsSource="{Binding Source={x:Reference _thisView}, Path=Users}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout Padding="5">
                     <BoxView HeightRequest="2" Margin="10" BackgroundColor="{StaticResource StrokeColor}"/>
-                    <Label Text="Hello" FontSize="Subtitle" Margin="10"/>
-                    <Label Text="Admin" Margin="40, 0, 0, 0"/>
+                    <Label Text="{Binding Name}" FontSize="Subtitle" Margin="10"/>
+                    <Label Text="{Binding Role}" Margin="40, 0, 0, 0" TextColor="{Binding Role, Converter={StaticResource _colorConverter}}"/>
                 </VerticalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>

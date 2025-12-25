@@ -25,6 +25,7 @@ public static class ServicesExtensions
         services.AddSingleton<ScanningPageViewModel>();
         services.AddSingleton<AddProductPageViewModel>();
         services.TryAddSingleton<ConnectionPageViewModel>();
+        services.AddSingleton<AdminPageViewModel>();
     }
 
     public static void AddReguiredPopups(this IServiceCollection services)

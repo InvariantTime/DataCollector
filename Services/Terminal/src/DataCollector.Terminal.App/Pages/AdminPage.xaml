@@ -9,12 +9,32 @@
 
         <Label Text="User list" HorizontalOptions="Center" FontSize="Medium" Margin="15"/>
 
-        <controls:UsersList HorizontalOptions="Center" MinimumHeightRequest="300"
-                            MaximumHeightRequest="400" MinimumWidthRequest="300"
-                            MaximumWidthRequest="400" Margin="40"/>
+        <Border>
 
+            <controls:UsersList HorizontalOptions="Center" MinimumHeightRequest="300"
+                            MaximumHeightRequest="400" MinimumWidthRequest="300"
+                            MaximumWidthRequest="400" Margin="40" Users="{Binding Users}"/>
+
+        </Border>
+
+        <HorizontalStackLayout HorizontalOptions="Center" >
+            <Button Text="Kick" WidthRequest="120" 
+         HeightRequest="40" FontSize="Medium" MinimumWidthRequest="120" />
+
+            <Button Text="Message" WidthRequest="120" 
+         HeightRequest="40" FontSize="Medium"  MinimumWidthRequest="120" Margin="10" />
+
+            <Button Text="Set Role" WidthRequest="120" 
+         HeightRequest="40" FontSize="Medium"  MinimumWidthRequest="120" />
+
+        </HorizontalStackLayout>
+        
         <Button Text="Back" WidthRequest="200" 
-                HeightRequest="50" FontSize="Medium" Clicked="OnAdminAction"/>
+                HeightRequest="50" FontSize="Medium" Margin="20"
+                Command="{Binding BackCommand}"/>
+            
+
+
     </VerticalStackLayout>
 
 </ContentPage> 

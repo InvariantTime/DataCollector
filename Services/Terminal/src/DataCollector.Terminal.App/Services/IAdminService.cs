@@ -1,12 +1,13 @@
 ﻿using DataCollector.Domain;
+using DataCollector.Terminal.App.DTOs;
 
 namespace DataCollector.Terminal.App.Services;
 
 public interface IAdminService
 {
-    Task SendMessageAsync(IEnumerable<Guid> users, string message);
+    Task<NotifyMessageDTO> SendMessageAsync(IEnumerable<Guid> users, string message);
 
-    Task ChangeRoleAsync(IEnumerable<Guid> users, UserRoles role);
+    Task<NotifyMessageDTO> ChangeRoleAsync(IEnumerable<Guid> users, UserRoles role);
 
-    Task KickAsync(IEnumerable<Guid> users);
+    Task<NotifyMessageDTO> KickAsync(IEnumerable<Guid> users);
 }

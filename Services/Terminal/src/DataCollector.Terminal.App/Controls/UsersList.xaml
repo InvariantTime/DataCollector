@@ -3,25 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataCollector.Terminal.App.Controls.UsersList">
     <CollectionView SelectionMode="Single">
-
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-                <x:String>Hello</x:String>
-                <x:String>Hello</x:String>
-                <x:String>Hello</x:String>
-                <x:String>Hello</x:String>
-                <x:String>Hello</x:String>
-                <x:String>Hello</x:String>
-                <x:String>Hello</x:String>
-            </x:Array>
-        </CollectionView.ItemsSource>
-
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout Padding="5">
-                    <BoxView HeightRequest="2" Margin="30" BackgroundColor="{StaticResource StrokeColor}"/>
+                    <BoxView HeightRequest="2" Margin="10" BackgroundColor="{StaticResource StrokeColor}"/>
                     <Label Text="Hello" FontSize="Subtitle" Margin="10"/>
-                    <Label Text="Admin" Margin="30"/>
+                    <Label Text="Admin" Margin="40, 0, 0, 0"/>
                 </VerticalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>

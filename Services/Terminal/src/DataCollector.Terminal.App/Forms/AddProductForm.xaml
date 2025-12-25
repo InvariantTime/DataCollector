@@ -15,7 +15,7 @@
         <Entry  MinimumWidthRequest="300" x:Name="_descriptionTextbox" x:FieldModifier="private"/>
 
         <Button Text="Add" Margin="30" MaximumWidthRequest="200" Clicked="OnAddProduct"/>
-        <Button Text="Cancel" MaximumWidthRequest="200" Clicked="OnClosedAsync"/>
+        <Button Text="Cancel" MaximumWidthRequest="200" Clicked="OnCloseAsync"/>
 
     </VerticalStackLayout>
 </ContentView>

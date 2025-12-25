@@ -5,11 +5,12 @@
              x:Class="DataCollector.Terminal.App.Pages.AdminPage"
              Title="AdminPage">
 
-    <VerticalStackLayout>
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
         <Label Text="User list" HorizontalOptions="Center" FontSize="Medium" Margin="15"/>
 
-        <controls:UsersList HorizontalOptions="Center" MaximumHeightRequest="400"
+        <controls:UsersList HorizontalOptions="Center" MinimumHeightRequest="300"
+                            MaximumHeightRequest="400" MinimumWidthRequest="300"
                             MaximumWidthRequest="400" Margin="40"/>
 
         <Button Text="Back" WidthRequest="200" 

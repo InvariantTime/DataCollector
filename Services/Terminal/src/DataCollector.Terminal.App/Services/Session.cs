@@ -4,8 +4,10 @@ using System.Runtime.CompilerServices;
 
 namespace DataCollector.Terminal.App.Services;
 
-public class Session : INotifyPropertyChanged
+public class Session : INotifyPropertyChanged, IDisposable
 {
+    private readonly IDisposable? _holder;
+
     private readonly ConcurrentDictionary<string, Uri> _uriRequestMapper;
     private readonly ConcurrentDictionary<string, Uri> _uriResponceMapper;
 
@@ -17,11 +19,12 @@ public class Session : INotifyPropertyChanged
 
     public bool CanUseAdminPage { get; private set; }
 
-    public Session(Guid id)
+    public Session(Guid id, IDisposable? sessionHolder = null)
     {
         Id = id;
         _uriRequestMapper = new ConcurrentDictionary<string, Uri>();
         _uriResponceMapper = new ConcurrentDictionary<string, Uri>();
+        _holder = sessionHolder;
     }
 
     public void SetCanAddProduct(bool value)
@@ -59,5 +62,12 @@ public class Session : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string? name = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
+
+    public void Dispose()
+    {
+        _holder?.Dispose();
+        _uriRequestMapper.Clear();
+        _uriResponceMapper.Clear();
     }
 }

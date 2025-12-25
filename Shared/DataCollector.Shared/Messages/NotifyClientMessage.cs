@@ -1,3 +1,3 @@
 ﻿namespace DataCollector.Shared.Messages;
 
-public record NotifyClientMessage(string Message);
+public record NotifyClientMessage(string Title, string Content);

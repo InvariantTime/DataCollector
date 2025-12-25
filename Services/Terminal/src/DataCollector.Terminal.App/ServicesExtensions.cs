@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Views;
 using DataCollector.Terminal.App.Forms;
 using DataCollector.Terminal.App.MVVM;
 using DataCollector.Terminal.App.Services;

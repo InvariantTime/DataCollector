@@ -1,29 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DataCollector.Terminal.App.Pages.RegisterPage">
+             x:Class="DataCollector.Terminal.App.Pages.RegisterPage"
+             xmlns:converters="clr-namespace:DataCollector.Terminal.App.Converters"
+             xmlns:tconverters="clr-namespace:CommunityToolkit.Maui.Converters;assembly=CommunityToolkit.Maui">
+
+    <ContentPage.Resources>
+        <converters:RegisterDTOConverter x:Name="_converter"/>
+        <tconverters:InvertedBoolConverter x:Name="_inverser"/>
+    </ContentPage.Resources>
 
     <StackLayout VerticalOptions="Center">
         <Label Text="Login" HorizontalOptions="Center" FontSize="Large" Margin="25"/>
 
         <VerticalStackLayout HorizontalOptions="Center">
             
-            <Label Text="Email" VerticalOptions="Center" Margin="0 0 10 0"/>
+            <Label Text="Name" VerticalOptions="Center" Margin="0 0 10 0"/>
             <Entry MaximumWidthRequest="300" Placeholder="Enter email..."
-                   MinimumWidthRequest="300"/>
+                   MinimumWidthRequest="300"
+                   x:Name="_nameEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
         <VerticalStackLayout HorizontalOptions="Center" Margin="20 0 0 0">
-            
+
             <Label Text="Password" VerticalOptions="Center" Margin="0 0 10 0"/>
             <Entry MaximumWidthRequest="300" Placeholder="Enter password..."
-                   MinimumWidthRequest="300" HorizontalOptions="End"/>
+                   MinimumWidthRequest="300" HorizontalOptions="End"
+                   x:Name="_passwordEntry" x:FieldModifier="private"/>
         </VerticalStackLayout>
 
+        <VerticalStackLayout>
+            <Label Text="{Binding Error}" TextColor="{StaticResource ErrorColor}" 
+                   HorizontalOptions="Center" Margin="10" IsEnabled="{Binding HasError}" FontSize="Subtitle" />
+        </VerticalStackLayout>
 
-        <Button Text="Submit" WidthRequest="200" 
+        <Grid HeightRequest="100">
+            <Button Text="Submit" WidthRequest="200" 
                 HeightRequest="50" Margin="20 0 0 0" 
-                FontSize="Medium"  Command="{Binding SubmitCommand}"/>
+                VerticalOptions="Center" HorizontalOptions="Center"
+                IsEnabled="{Binding IsProcessing, Converter={StaticResource _inverser}}"
+                FontSize="Medium"  Command="{Binding SubmitCommand}">
+
+                <Button.CommandParameter>
+                    <MultiBinding   Converter="{StaticResource _converter}">
+                        <Binding Source="{Reference Name=_nameEntry}" Path="Text"/>
+                        <Binding Source="{Reference Name=_passwordEntry}" Path="Text"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+
+            <ActivityIndicator IsVisible="{Binding IsProcessing}" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </Grid>
 
     </StackLayout>
 </ContentPage>

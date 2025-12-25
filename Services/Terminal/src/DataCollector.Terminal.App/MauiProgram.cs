@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using DataCollector.Messaging.DI;
 using ZXing.Net.Maui.Controls;
 using DataCollector.Messaging.MQTT;
+using DataCollector.Shared.Messages;
 
 namespace DataCollector.Terminal.App;
 
@@ -28,6 +29,9 @@ public static class MauiProgram
 
         builder.Services.AddMessageBroker(broker =>
         {
+            broker.MapEndpoint<RegisterRequestMessage>("mqtt:devices/register/request");
+            broker.MapEndpoint<RegisterResponceMessage>("mqtt:devices/register/responce");
+
             broker.UseConnection<MqttConnectionProvider>();
         });
 

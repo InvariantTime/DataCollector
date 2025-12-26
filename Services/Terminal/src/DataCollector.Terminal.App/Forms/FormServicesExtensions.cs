@@ -37,7 +37,9 @@ public class FormServiceBuilder
         services.AddSingleton<IFormService>(scope =>
         {
             var forms = _forms.Select(x => scope.GetRequiredService(x)).Cast<ContentView>();
-            var service = new FormService(forms, _options ?? PopupOptions.Empty);
+            var dispatcher = scope.GetRequiredService<IDispatcher>();
+
+            var service = new FormService(forms, _options ?? PopupOptions.Empty, dispatcher);
 
             return service;
         });

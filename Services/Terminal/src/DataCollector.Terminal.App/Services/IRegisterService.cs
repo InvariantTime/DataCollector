@@ -7,5 +7,5 @@ public interface IRegisterService
 {
     Task<Result> RegisterAsync(RegisterDTO dto, CancellationToken cancellation);
 
-    Task DisconnectAsync();
+    Task DisconnectAsync(bool needNotifyServer = true);
 }

@@ -8,9 +8,17 @@ public class UserSession
 
     public Guid Id { get; }
 
-    public UserSession(User user, Guid id)
+    public DateTime LastHeartbeat { get; private set; }
+
+    public UserSession(User user, Guid id, DateTime lastHeartbeat)
     {
         User = user;
         Id = id;
+        LastHeartbeat = lastHeartbeat;
+    }
+
+    public void UpdateHeartbeat(DateTime newHeartbeat)
+    {
+        LastHeartbeat = newHeartbeat;
     }
 }

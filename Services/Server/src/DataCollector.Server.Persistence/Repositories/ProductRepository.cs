@@ -16,6 +16,15 @@ public class ProductRepository : IProductRepository
 
     public async Task<Result<Product>> CreateProduct(Product product)
     {
+        if (string.IsNullOrWhiteSpace(product.Description) == true)
+            return Result.Failed<Product>("Description cannot be empty");
+
+        if (string.IsNullOrWhiteSpace(product.Name) == true)
+            return Result.Failed<Product>("Name cannot be empty");
+
+        if (string.IsNullOrWhiteSpace(product.BarCode) == true)
+            return Result.Failed<Product>("Barcode cannot be empty");
+
         await _context.Products.AddAsync(product);
         await _context.SaveChangesAsync();
 

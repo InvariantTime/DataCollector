@@ -1,4 +1,5 @@
 using DataCollector.Messaging.AMQP;
+using DataCollector.Messaging.Core;
 using DataCollector.Messaging.DI;
 using DataCollector.Server.API;
 using DataCollector.Server.API.Requests;
@@ -22,6 +23,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(op =>
     op.UseNpgsql(connectionString);
 });
 
+builder.Services.Configure<UserSessionOptions>(builder.Configuration.GetSection("UserSessionOptions"));
+builder.Services.AddHostedService<SessionHealthCheckService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -38,6 +41,9 @@ builder.Services.AddMessageBroker((broker) =>
     broker.MapConsumer<ClientScanMessageConsumer, ScanMessage>("topic://amq.topic/devices/*/request/scan?durable=true");
     broker.MapConsumer<ClientAddProductMessageConsumer, AddProductMessage>("topic://amq.topic/devices/*/request/add?durable=true");
     broker.MapConsumer<ClientAdminCommandConsumer, AdminCommandMessage>("topic://amq.topic/devices/*/request/admin?durable=true");
+    broker.MapConsumer<ClientHeartbeatConsumer, ClientHeartbeatMessage>("topic://amq.topic/devices/*/request/heartbeat?durable=true");
+    broker.MapConsumer<DisconnectRequestConsumer, DisconnectRequestMessage>("topic://amq.topic/devices/*/request/disconnect?durable=true");
+
 
     //Messages
     broker.MapEndpoint<RegisterResponceMessage>("topic://amq.topic/devices/register/responce?durable=true");
@@ -66,6 +72,30 @@ app.MapPost("api/users/register", async ([FromBody]RegisterUserRequest request, 
     await users.UpdateUser(user.Value);
 
     return "success!";
+});
+
+app.MapPost("api/users/msg", async ([FromBody] NotifyClientRequest request, IMessageBroker broker) =>
+{
+    var uri = new Uri($"topic://amq.topic/devices/{request.Id}/responce/notify?durable=true");
+    await broker.PublishAsync(new NotifyClientMessage(request.Title, request.Content), uri);
+
+    return "success!";
+});
+
+app.MapPost("api/users/kick", async ([FromBody] KickClientRequest request, ISessionService session) =>
+{
+    var result = await session.DisconnectSessionAsync(request.Id, true, request.Reason);
+
+    if (result.IsSuccess == true)
+        return "success";
+
+    return result.Error;
+});
+
+app.MapGet("api/users", async ([FromBody] NotifyClientRequest request, ISessionService session) =>
+{
+    var sessions = session.Sessions.Values;
+    return sessions.Select(x => $"Id: {x.Id}, Name: {x.User.Name}");
 });
 
 app.Run();

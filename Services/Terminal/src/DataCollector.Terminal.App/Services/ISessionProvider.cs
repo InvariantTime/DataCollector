@@ -1,10 +1,12 @@
-﻿namespace DataCollector.Terminal.App.Services;
+﻿using DataCollector.Shared;
+
+namespace DataCollector.Terminal.App.Services;
 
 public interface ISessionProvider
 {
     Session? Session { get; }
 
-    Session CreateSession(Guid id);
+    void SetSession(Session session);
 
-    void DeleteSession();
+    Result<Guid> DeleteSession();
 }

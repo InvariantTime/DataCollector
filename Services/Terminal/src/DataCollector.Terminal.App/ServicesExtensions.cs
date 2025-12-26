@@ -16,6 +16,9 @@ public static class ServicesExtensions
         services.AddSingleton<ISessionProvider, SessionProvider>();
         services.AddSingleton<IRegisterService, RegisterService>();
         services.AddSingleton<IAdminService, AdminService>();
+
+        services.AddSingleton<BackgroundServiceStartup>();
+        services.AddSingleton<IBackgroundService, HeartBeatService>();
     }
 
     public static void AddRequiredViewModels(this IServiceCollection services)

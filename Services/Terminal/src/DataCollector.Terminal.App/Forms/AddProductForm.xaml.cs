@@ -44,10 +44,10 @@ public partial class AddProductForm : ContentView, IWithResult<AddProductDTO>, I
         return Task.CompletedTask;
     }
 
-    private void OnClosedAsync(object sender, EventArgs e)
+    private async void OnClosedAsync(object sender, EventArgs e)
     {
         var task = CloseAsyncCallback?.Invoke() ?? Task.CompletedTask;
-        task.GetAwaiter().GetResult();
+        await task;
     }
 
     private void OnAddProduct(object sender, EventArgs e)

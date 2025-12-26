@@ -9,5 +9,5 @@ public interface ISessionService
 
     Task<Result<Guid>> ConnectSessionAsync(User user);
 
-    Task<Result> DisconnectSessionAsync(Guid sessionId);
+    Task<Result> DisconnectSessionAsync(Guid sessionId, bool needNotifyClient = true, string? reason = null);
 }

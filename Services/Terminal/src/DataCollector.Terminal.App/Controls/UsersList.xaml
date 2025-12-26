@@ -3,19 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataCollector.Terminal.App.Controls.UsersList"
              x:Name="_thisView" x:FieldModifier="private"
-             xmlns:converters="clr-namespace:DataCollector.Terminal.App.Converters">
+             xmlns:converters="clr-namespace:DataCollector.Terminal.App.Converters"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
     <ContentView.Resources>
         <converters:RoleColorConverter x:Key="_colorConverter"/>
     </ContentView.Resources>
     
-    <CollectionView SelectionMode="Single" ItemsSource="{Binding Source={x:Reference _thisView}, Path=Users}">
+    <CollectionView SelectionMode="Single"
+                    ItemsSource="{Binding Source={x:Reference _thisView}, Path=Users}"
+                    SelectedItems="{Binding Source={x:Reference _thisView}, Path=SelectedUsers}"
+                    x:Name="_list" x:FieldModifier="private">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout Padding="5">
                     <BoxView HeightRequest="2" Margin="10" BackgroundColor="{StaticResource StrokeColor}"/>
                     <Label Text="{Binding Name}" FontSize="Subtitle" Margin="10"/>
                     <Label Text="{Binding Role}" Margin="40, 0, 0, 0" TextColor="{Binding Role, Converter={StaticResource _colorConverter}}"/>
+
+                    <VerticalStackLayout.Behaviors>
+                        <toolkit:TouchBehavior LongPressCompleted="OnLongPressed"/>
+                    </VerticalStackLayout.Behaviors>
+
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnItemTapped" CommandParameter="{Binding Id}"/>
+                    </VerticalStackLayout.GestureRecognizers>
                 </VerticalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
